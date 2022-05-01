@@ -1,38 +1,43 @@
 from datetime import date
 from ninja import Schema
+from pydantic import BaseModel
+
+from google_ads.models import Campaign, AdGroup, Ads
+
+# User 
+# class UserSchema(Schema):
+#     id:int
+#     username:str
 
 
 # Campaign
 # in and out
 class CampaignInput(Schema):
-    # owner:str --> ForeignKey?????
+    # owner:UserSchema         # ForeignKey
     campaign_name:str 
     is_active:bool 
-    created_at:date
-    updated_at:date
+
 
 class CampaignOutput(Schema):
     id:int
-    # owner:str
+    # owner:UserSchema         # ForeignKey
     campaign_name:str 
     is_active:bool 
     created_at:date
     updated_at:date
-
 
 
 # Ad Group
 # in and out
 class AdGroupInput(Schema):
-    # campaign:str 
+    campaign_id:int       # ForeignKey
     ad_group_name:str 
     is_active:bool 
-    created_at:date
-    updated_at:date
+
 
 class AdGroupOutput(Schema):
     id:int
-    # campaign:str 
+    campaign:CampaignOutput = None         # ForeignKey
     ad_group_name:str 
     is_active:bool 
     created_at:date
@@ -44,7 +49,7 @@ class AdGroupOutput(Schema):
 # Ads
 # in and out
 class AdsInput(Schema):
-    # ad_group:str 
+    ad_group_id:int          # ForeignKey
     ad_name:str 
     headline_1:str 
     headline_2:str 
@@ -53,12 +58,11 @@ class AdsInput(Schema):
     description2:str 
     website_link:str 
     is_active:bool 
-    created_at:date
-    updated_at:date
+
 
 class AdsOutput(Schema):
     id:int
-    # ad_group:str 
+    ad_group:AdGroupOutput = None          # ForeignKey
     ad_name:str 
     headline_1:str 
     headline_2:str 

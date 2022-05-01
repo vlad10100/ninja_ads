@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 # Campaign
 class Campaign(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     campaign_name = models.CharField(max_length=150, unique=True)
     is_active = models.BooleanField(default=False)
