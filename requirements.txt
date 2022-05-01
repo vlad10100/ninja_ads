@@ -1,0 +1,6 @@
+asgiref==3.5.1
+Django==4.0.4
+django-ninja==0.17.0
+pydantic==1.9.0
+sqlparse==0.4.2
+typing_extensions==4.2.0
